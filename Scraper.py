@@ -11,7 +11,7 @@ GmailUsername = 'username@gmail.com'
 GmailPassword = 'password'
 
 TargetCurrency = 'EUR/USD' # Add as per your requirement
-TargetRate = '3.0000' # Add upto 4 decimal place
+TargetRate = '0.0000' # Add upto 4 decimal place
 
 def getRates():
 
@@ -47,12 +47,13 @@ def getRates():
     
     print('CSV CREATED!')
     
-    # For Email Sending
-    for index in range(len(CurrencyNames)):
-        if (CurrencyNames[index] == TargetCurrency):  # if the targeted currency and rate exists then send mail
-            if (CurrencyRates[index] >= TargetRate):
-                   sendEmail()
-            break
+    if (TargetRate != '0.0000'):
+        # For Email Sending
+        for index in range(len(CurrencyNames)):
+            if (CurrencyNames[index] == TargetCurrency):  # if the targeted currency and rate exists then send mail
+                if (CurrencyRates[index] >= TargetRate):
+                    sendEmail()
+                break
             
 def sendEmail():
     
